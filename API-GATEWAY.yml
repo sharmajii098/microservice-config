@@ -1,1 +1,27 @@
+server:
+  port: 8087
 
+spring:
+  cloud:
+    gateway:
+      routes:
+
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+
+        - id: hotel-service
+          uri: lb://HOTEL-SERVICE
+          predicates:
+            - Path=/hotels/**
+
+        - id: rating-service
+          uri: lb://RATING-SERVICE
+          predicates:
+            - Path=/ratings/**
